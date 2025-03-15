@@ -1,12 +1,12 @@
-<?php $this->load->view("defaults/header");?>
+<?php $this->load->view("defaults/header"); ?>
 
 <div class="row">
-	<div class="span12">
+	<div class="col-12">
 		<div class="page-header mb-4">
 			<h1>API</h1>
 		</div>
 	</div>
-	<div class="span12">
+	<div class="col-12">
 	    <p class="explain border">Create pastes from the commandline</p>
 
         <?php if (config_item('private_only')) { echo "<p class='explain'><font style='color:red;font-weight:bold;'>NOTICE: Private mode is active. Some API endpoints are unavailable.</font></p>"; } ?>
@@ -90,4 +90,4 @@
 	</div>
 </div>
 
-<?php $this->load->view("defaults/footer");?>
+<?php $this->load->view("defaults/footer"); ?>

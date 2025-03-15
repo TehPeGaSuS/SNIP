@@ -73,3 +73,4 @@ $lang['table_hits'] = 'Hits';
 $lang['table_time'] = 'When';
 $lang['powered_by'] = 'Powered by';
 $lang['alert_banner'] = 'ℹ️ Your data is safe here... unless you make the SNIP gods angry. And let\'s just say they have a really bad sense of humor.';
+$lang['color_mode'] = 'Dark Mode';

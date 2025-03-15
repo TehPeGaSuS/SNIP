@@ -94,14 +94,14 @@ $searchparams = ($this->input->get('search') ? '?search=' . $this->input->get('s
 
 		<?php if ($this->config->item('alert_banner')) { ?>
 			<!-- Alert Banner -->
-			<div class="container mt-5 pt-4">
+			<div class="container mt-5 mt-md-4 pt-4">
 				<div class="alert alert-banner" role="alert">
 					<h5><?php echo lang('alert_banner'); ?></h5>
 				</div>
 			</div>
 		<?php } ?>
 
-		<div class="container mt-5 pt-4">
+		<div class="container mt-5 mt-md-4 pt-4">
 			<?php if(isset($status_message)) { ?>
 				<div class="alert alert-success" role="alert">
 					<?php echo $status_message; ?>

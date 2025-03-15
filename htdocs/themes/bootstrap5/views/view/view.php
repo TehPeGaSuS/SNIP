@@ -44,6 +44,7 @@ if(isset($insert)){
                         <?php } ?>
                     </div>
                 <?php } ?>
+                <?php if(!$burn) { ?>
                 <div class="detail">
                     <span class="item"><?php echo lang('paste_url'); ?> </span>
                     <a href="<?php echo $url; ?>"><?php echo $url; ?></a>
@@ -81,6 +82,7 @@ if(isset($insert)){
                         <!-- AddToAny END -->
                     </div>
                 </div>
+                <?php } ?>
             </div>
         </div>
     </div>

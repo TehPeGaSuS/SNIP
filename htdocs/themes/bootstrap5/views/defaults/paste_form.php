@@ -117,7 +117,7 @@
                             <span class="text-muted"> - <?php echo lang('paste_private_desc'); ?></span>
                         </label>
                     </div>
-                    <div class="mb-3">
+                    <div>
                         <label for="expire" class="form-label">
                             <?php echo lang('paste_delete'); ?>
                             <span class="text-muted"> - <?php echo lang('paste_delete_desc'); ?></span>
@@ -145,20 +145,22 @@
                 <input type="hidden" value="<?php echo $reply; ?>" name="reply" />
             <?php } ?>
             <?php if($this->config->item('enable_captcha') && $this->session->userdata('is_human') === null) { ?>
-                <div class="mb-3">
-                    <label for="captcha" class="form-label">
-                        <?php echo lang('paste_spam'); ?>
-                        <span class="text-muted"><?php if(!$use_recaptcha) { ?>- <?php echo lang('paste_spam_desc'); } ?></span>
-                    </label>
-                    <?php if($use_recaptcha){
-                        echo recaptcha_get_html($recaptcha_publickey);
-                    } else { ?>
-                        <img class="captcha mb-2" src="<?php echo site_url('view/captcha'); ?>?<?php echo date('U', time()); ?>" alt="captcha" width="180" height="40" />
-                        <input type="text" id="captcha" name="captcha" tabindex="2" maxlength="32" class="form-control">
-                    <?php } ?>
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="captcha" class="form-label">
+                            <?php echo lang('paste_spam'); ?>
+                            <span class="text-muted"><?php if(!$use_recaptcha) { ?>- <?php echo lang('paste_spam_desc'); } ?></span>
+                        </label>
+                        <?php if($use_recaptcha){
+                            echo recaptcha_get_html($recaptcha_publickey);
+                        } else { ?>
+                            <img class="captcha mb-2" src="<?php echo site_url('view/captcha'); ?>?<?php echo date('U', time()); ?>" alt="captcha" width="180" height="40" />
+                            <input type="text" id="captcha" name="captcha" tabindex="2" maxlength="32" class="form-control">
+                        <?php } ?>
+                    </div>
                 </div>
             <?php } ?>
-            <div class="d-grid gap-2">
+            <div class="d-flex flex-column flex-md-row gap-2">
                 <button type="submit" name="submit" value="submit" class="btn btn-primary btn-lg">
                     <i class="fa-regular fa-circle-up"></i>
                     <?php echo lang('paste_create'); ?>

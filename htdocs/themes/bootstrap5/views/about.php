@@ -1,12 +1,12 @@
-<?php $this->load->view("defaults/header");?>
+<?php $this->load->view("defaults/header"); ?>
 
 <div class="row">
-	<div class="span12">
+	<div class="col-12">
 		<div class="page-header mb-4">
 			<h1>About</h1>
 		</div>
 	</div>
-	<div class="span12">
+	<div class="col-12">
 	<p>SNIP is an Open-Source PHP Pastebin, with the aim of keeping a simple and easy to use user interface.</p>
     <p>SNIP allows you to easily share code with anyone you wish. Here are some features:</p>
 
@@ -26,4 +26,4 @@
 	</div>
 </div>
 
-<?php $this->load->view("defaults/footer");?>
+<?php $this->load->view("defaults/footer"); ?>

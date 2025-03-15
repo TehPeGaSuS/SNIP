@@ -389,43 +389,49 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!themeToggle) return;
 
-    // Apply saved theme preference on page load
-    if (localStorage.getItem('darkTheme') === 'true') {
-        document.body.classList.add('dark-theme');
-        themeToggle.checked = true;
+    // Function to apply the theme
+    function applyTheme(isDark) {
+        document.body.classList.toggle('dark-theme', isDark);
 
         if (nav) {
-            nav.classList.remove('navbar-light', 'bg-light');
-            nav.classList.add('navbar-dark', 'bg-dark');
+            nav.classList.remove('navbar-light', 'bg-light', 'navbar-dark', 'bg-dark');
+            nav.classList.add(isDark ? 'navbar-dark' : 'navbar-light');
+            nav.classList.add(isDark ? 'bg-dark' : 'bg-light');
         }
 
         if (table) {
-            table.classList.add('table-dark');
+            table.classList.toggle('table-dark', isDark);
         }
+
+        themeToggle.checked = isDark;
+        localStorage.setItem('darkTheme', isDark ? 'true' : 'false');
     }
 
-    // Theme toggle event listener
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('darkTheme');
+
+    // Check system preference
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    // Apply initial theme
+    if (savedTheme) {
+        applyTheme(savedTheme === 'true');
+    } else if (prefersDark) {
+        applyTheme(true);
+    } else {
+        applyTheme(false);
+    }
+
+    // Listen for changes in system preference
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
+        // Only apply system preference if no manual preference is saved
+        if (!localStorage.getItem('darkTheme')) {
+            applyTheme(event.matches);
+        }
+    });
+
+    // Theme toggle event listener (for manual toggling)
     themeToggle.addEventListener('change', function () {
-        document.body.classList.toggle('dark-theme', this.checked);
-
-        if (nav) {
-            if (this.checked) {
-                nav.classList.remove('navbar-light', 'bg-light');
-                nav.classList.add('navbar-dark', 'bg-dark');
-            } else {
-                nav.classList.remove('navbar-dark', 'bg-dark');
-                nav.classList.add('navbar-light', 'bg-light');
-            }
-        }
-
-        if (table) {
-            if (this.checked) {
-                table.classList.add('table-dark');
-            } else {
-                table.classList.remove('table-dark');
-            }
-        }
-
-        localStorage.setItem('darkTheme', this.checked ? 'true' : 'false');
+        applyTheme(this.checked);
     });
 });

@@ -42,7 +42,7 @@ $this->carabiner->display('js');
     <div class="d-flex justify-content-end">
         <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="themeToggle">
-            <label class="form-check-label" for="themeToggle">Dark Mode</label>
+            <label class="form-check-label" for="themeToggle"><?php echo lang('color_mode'); ?></label>
         </div>
     </div>
 </div>
