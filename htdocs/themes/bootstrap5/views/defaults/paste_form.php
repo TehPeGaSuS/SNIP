@@ -4,7 +4,7 @@
     <div class="col-12">
         <div class="page-header mb-4">
             <h1>
-                <?php if(!isset($page['title'])) { ?>
+                <?php if (!isset($page['title'])) { ?>
                     <?php echo lang('paste_create_new'); ?>
                 <?php } else { ?>
                     <?php echo $page['title']; ?>
@@ -51,6 +51,7 @@
                     ?>
                 </div>
             </div>
+
             <div class="row mb-3">
                 <div class="col-12">
                     <label for="code" class="form-label">
@@ -59,21 +60,20 @@
                     </label>
                 </div>
             </div>
+
             <div class="mb-3">
-                <textarea id="code" class="form-control" name="code" rows="20" tabindex="4"><?php if(isset($paste_set)) { echo $paste_set; } ?></textarea>
+                <textarea id="code" class="form-control" name="code" rows="20" tabindex="4"><?php if (isset($paste_set)) { echo $paste_set; } ?></textarea>
             </div>
 
-            <?php if ($this->config->item('file_upload')) { ?>
-                <div class="row mb-3">
-                    <div class="col-md-4">
-                        <label for="file" class="form-label"><?php echo lang('attach_file'); ?></label>
-                        <input type="file" name="file" id="file" class="form-control">
-                    </div>
-                </div>
-            <?php } ?>
+            <div class="row mb-2">
+                <div class="col-md-5">
+                    <?php if ($this->config->item('file_upload')) { ?>
+                        <div class="mb-3">
+                            <label for="file" class="form-label"><?php echo lang('attach_file'); ?></label>
+                            <input type="file" name="file" id="file" class="form-control">
+                        </div>
+                    <?php } ?>
 
-            <div class="row mb-3">
-                <div class="col-md-4">
                     <?php if (!$this->config->item('disable_shorturl')) { ?>
                         <div class="form-check mb-3">
                             <?php
@@ -96,6 +96,7 @@
                             </label>
                         </div>
                     <?php } ?>
+
                     <div class="form-check mb-3">
                         <?php
                             $set = array(
@@ -117,6 +118,7 @@
                             <span class="text-muted"> - <?php echo lang('paste_private_desc'); ?></span>
                         </label>
                     </div>
+
                     <div class="mb-3">
                         <label for="expire" class="form-label">
                             <?php echo lang('paste_delete'); ?>
@@ -133,45 +135,58 @@
                                 "40320"  => lang('exp_1m'),
                                 "483840" => lang('exp_1y'),
                             );
-                            if (! config_item('disable_keep_forever')) {
+                            if (!config_item('disable_keep_forever')) {
                                 $options['0'] = lang('exp_forever');
                             }
                             echo form_dropdown('expire', $options, $expire_set, $expire_extra); 
                         ?>
                     </div>
-                </div>
-            </div>
-            <?php if($reply){ ?>
-                <input type="hidden" value="<?php echo $reply; ?>" name="reply" />
-            <?php } ?>
-            <?php if($this->config->item('enable_captcha') && $this->session->userdata('is_human') === null) { ?>
-                <div class="mb-3">
-                    <label for="captcha" class="form-label">
-                        <?php echo lang('paste_spam'); ?>
-                        <span class="text-muted"><?php if(!$use_recaptcha) { ?>- <?php echo lang('paste_spam_desc'); } ?></span>
-                    </label>
-                    <?php if($use_recaptcha){
-                        echo recaptcha_get_html($recaptcha_publickey);
-                    } else { ?>
-                        <img class="captcha mb-2" src="<?php echo site_url('view/captcha'); ?>?<?php echo date('U', time()); ?>" alt="captcha" width="180" height="40" />
-                        <input type="text" id="captcha" name="captcha" tabindex="2" maxlength="32" class="form-control">
+
+                    <?php if ($reply) { ?>
+                        <input type="hidden" value="<?php echo $reply; ?>" name="reply" />
                     <?php } ?>
+
+                    <?php if ($this->config->item('enable_captcha') && $this->session->userdata('is_human') === null) { ?>
+                        <div class="mb-4">
+                            <label for="captcha" class="form-label">
+                                <?php echo lang('paste_spam'); ?>
+                                <span class="text-muted"><?php if(!$use_recaptcha) { ?>- <?php echo lang('paste_spam_desc'); } ?></span>
+                            </label>
+                            <?php if ($use_recaptcha) {
+                                echo recaptcha_get_html($recaptcha_publickey);
+                            } else { ?>
+                                <img class="captcha mb-2" src="<?php echo site_url('view/captcha'); ?>?<?php echo date('U', time()); ?>" alt="captcha" width="180" height="40" />
+                                <input type="text" id="captcha" name="captcha" tabindex="2" maxlength="32" class="form-control">
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
+
+                    <div class="d-flex flex-column flex-md-row gap-2">
+                        <button type="submit" name="submit" value="submit" class="btn btn-primary">
+                            <i class="fa-regular fa-circle-up"></i>
+                            <?php echo lang('paste_create'); ?>
+                        </button>
+                    </div>
+                    <?php
+                        if ($this->config->item('csrf_protection') === TRUE) {
+                            if (isset($_COOKIE[$this->config->item('csrf_cookie_name')])) {
+                                echo '<input type="hidden" name="'.$this->config->item('csrf_token_name').'" value="'.html_escape($_COOKIE[$this->config->item('csrf_cookie_name')]).'" style="display:none;" />'."\n";
+                            }
+                        }
+                    ?>
                 </div>
-            <?php } ?>
-            <div class="d-grid gap-2">
-                <button type="submit" name="submit" value="submit" class="btn btn-primary btn-lg">
-                    <i class="fa-regular fa-circle-up"></i>
-                    <?php echo lang('paste_create'); ?>
-                </button>
+
+                <!-- Right column adbox: visible only on md+ (desktop/tablets) - Based on your design preference, you can use 'ms-auto' instead of 'ms-5' -->
+                <div class="col-md-6 d-none d-md-block align-self-center ms-5">
+                    <!-- Ad, image, or text goes here 
+                    <div class="p-3">
+                        <h5>Ad, Notice or Image</h5>
+                        <p>This content is visible on desktops and tablets only.</p>
+                        <img src="" alt="Sample Ad" class="img-fluid" />
+                    </div>
+                    -->
+                </div>
             </div>
-            <?php
-            if ($this->config->item('csrf_protection') === TRUE)
-            {
-                if(isset($_COOKIE[$this->config->item('csrf_cookie_name')])) {
-                    echo '<input type="hidden" name="'.$this->config->item('csrf_token_name').'" value="'.html_escape($_COOKIE[$this->config->item('csrf_cookie_name')]).'" style="display:none;" />'."\n";
-                }
-            }
-            ?>
         </form>
     </div>
 </div>

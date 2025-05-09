@@ -285,3 +285,21 @@ $(document).ready(function() {
     ST.crypto();
     ST.filereader();
 });
+
+// Enable the usage of tabs in the default paste textarea
+const textarea = document.getElementById('code');
+textarea.addEventListener('keydown', function(e) {
+    if (e.key === 'Tab') {
+        e.preventDefault();
+        const start = this.selectionStart;
+        const end   = this.selectionEnd;
+
+        // insert a tab character at the cursor position
+        this.value = this.value.substring(0, start)
+                    + '\t'
+                    + this.value.substring(end);
+
+        // move the cursor after the inserted tab
+        this.selectionStart = this.selectionEnd = start + 1;
+    }
+});

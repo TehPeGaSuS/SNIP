@@ -103,28 +103,28 @@ ST.line_highlighter = function () {
 ST.highlight_lines = function () {
     var wloc = window.location.href;
     if (wloc.indexOf('#') > -1) {
-        $('.container .CodeMirror li').css('background', 'none');
+        $('.container .CodeMirror li').removeClass('highlight');
 
         var lines = wloc.split('#')[1];
         if (lines.indexOf('-') > -1) {
             var start_line = parseInt(lines.split('-')[0].replace('L', ''), 10);
             var end_line = parseInt(lines.split('-')[1].replace('L', ''), 10);
             for (var i = start_line; i <= end_line; i++) {
-                $('.container .CodeMirror li:nth-child(' + i + ')').css('background', '#F8EEC7');
+                $('.container .CodeMirror li:nth-child(' + i + ')').addClass('highlight');
             }
         } else {
             var re = new RegExp('^L[0-9].*?$');
             var r = lines.match(re);
             if (r) {
                 var marked_line = lines.replace('L', '');
-                $('.container .CodeMirror li:nth-child(' + marked_line + ')').css('background', '#F8EEC7');
+                $('.container .CodeMirror li:nth-child(' + marked_line + ')').addClass('highlight');
             }
         }
     }
 }
 
 ST.crypto = function () {
-    $('button[name=submit]').after('<button type="submit" id="create_encrypted" class="btn btn-lg btn-success">' + '<i class="fa-solid fa-lock"></i> Create encrypted' + '</button>');
+    $('button[name=submit]').after('<button type="submit" id="create_encrypted" class="btn btn-success">' + '<i class="fa-solid fa-lock"></i> Create encrypted' + '</button>');
     $('#create_encrypted').on('click', function () {
         var $code = $('#code');
         var content = '';
@@ -389,43 +389,68 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!themeToggle) return;
 
-    // Apply saved theme preference on page load
-    if (localStorage.getItem('darkTheme') === 'true') {
-        document.body.classList.add('dark-theme');
-        themeToggle.checked = true;
+    // Function to apply the theme. The 'manual' parameter indicates if this change was user-initiated.
+    function applyTheme(isDark, manual = false) {
+        document.body.classList.toggle('dark-theme', isDark);
 
         if (nav) {
-            nav.classList.remove('navbar-light', 'bg-light');
-            nav.classList.add('navbar-dark', 'bg-dark');
+            nav.classList.remove('navbar-light', 'bg-light', 'navbar-dark', 'bg-dark');
+            nav.classList.add(isDark ? 'navbar-dark' : 'navbar-light');
+            nav.classList.add(isDark ? 'bg-dark' : 'bg-light');
         }
 
         if (table) {
-            table.classList.add('table-dark');
+            table.classList.toggle('table-dark', isDark);
+        }
+
+        // Update the toggle state
+        themeToggle.checked = isDark;
+
+        // Only update localStorage if the change is manual.
+        if (manual) {
+            localStorage.setItem('darkTheme', isDark ? 'true' : 'false');
         }
     }
 
-    // Theme toggle event listener
+    // Check for a saved manual preference.
+    const savedTheme = localStorage.getItem('darkTheme');
+
+    if (savedTheme !== null) {
+        // Apply the saved manual preference.
+        applyTheme(savedTheme === 'true');
+    } else {
+        // Otherwise, use the system preference.
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        applyTheme(prefersDark);
+    }
+
+    // Listen for system changes only if there's no manual override.
+    if (localStorage.getItem('darkTheme') === null) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
+            applyTheme(event.matches);
+        });
+    }
+
+    // Listen for manual toggle.
     themeToggle.addEventListener('change', function () {
-        document.body.classList.toggle('dark-theme', this.checked);
-
-        if (nav) {
-            if (this.checked) {
-                nav.classList.remove('navbar-light', 'bg-light');
-                nav.classList.add('navbar-dark', 'bg-dark');
-            } else {
-                nav.classList.remove('navbar-dark', 'bg-dark');
-                nav.classList.add('navbar-light', 'bg-light');
-            }
-        }
-
-        if (table) {
-            if (this.checked) {
-                table.classList.add('table-dark');
-            } else {
-                table.classList.remove('table-dark');
-            }
-        }
-
-        localStorage.setItem('darkTheme', this.checked ? 'true' : 'false');
+        applyTheme(this.checked, true);
     });
+});
+
+// Enable the usage of tabs in the default paste textarea
+const textarea = document.getElementById('code');
+textarea.addEventListener('keydown', function(e) {
+    if (e.key === 'Tab') {
+        e.preventDefault();
+        const start = this.selectionStart;
+        const end   = this.selectionEnd;
+
+        // insert a tab character at the cursor position
+        this.value = this.value.substring(0, start)
+                    + '\t'
+                    + this.value.substring(end);
+
+        // move the cursor after the inserted tab
+        this.selectionStart = this.selectionEnd = start + 1;
+    }
 });

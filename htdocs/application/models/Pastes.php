@@ -132,9 +132,9 @@ class Pastes extends CI_Model
             $CItemp = &get_instance();
             echo '<!DOCTYPE html><html><head><title>Warning!</title></head><body>';
             echo '<pre>Copy this URL:</pre>';
-            echo '<input type="text" style="background-color: black; color: white; margin: 0; width: 99%;" value="' . site_url('view/' . $data['pid']) . '" /><!-- behind you --><br /><br />';
-            if ($data['snipurl'] !== false) {
-                echo '<br>Shorturl: ' . $shorturl . '">' . $shorturl . '<br>';
+            echo '<input type="text" style="background-color: black; color: white; margin: 0; width: 25%;" value="' . site_url('view/' . $data['pid']) . '" onclick="this.select();" /><!-- behind you --><br /><br />';
+            if ($data['snipurl'] !== false && $data['snipurl'] !== NULL) {
+                echo '<br>Shorturl: ' . $data['snipurl'] . '<br>';
             }
             echo "<pre>It will become invalid on visit (will be deleted after first read)</pre><br />\n";
             echo '<a href="' . base_url() . '" class="title">Return to ' . $CItemp->config->item('site_name') . '</a></body></html>';

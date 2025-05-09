@@ -25,7 +25,7 @@ Here are some features:
 Check it out
 ------------
 
-<img src="https://raw.githubusercontent.com/MercanoGlobal/SNIP/main/doc/snip_demo.png" alt="SNIP"></a>
+<img src="https://raw.githubusercontent.com/MercanoGlobal/SNIP/main/doc/img/snip_demo.png" alt="SNIP"></a>
 
 
 Prerequisites
@@ -68,7 +68,7 @@ All files are served directly; the SNIP-configuration for Docker resides in dock
 Documentation
 -------------
 
-In the folder doc/, you will find:
+In the doc/ folder, you will find:
 
 * Web server example configurations for Apache, Nginx, Lighttpd, Cherokee
 * A troubleshooting guide
@@ -79,6 +79,13 @@ In the folder doc/, you will find:
 
 Changelog
 ---------
+
+### Version 1.1.0:
+
+* New theme: Bootstrap5 ([13](https://github.com/MercanoGlobal/SNIP/issues/13)) - [View Theme](https://raw.githubusercontent.com/MercanoGlobal/SNIP/main/doc/img/snip_dark.png)
+* Various bug fixes and improvements
+
+`The snip.php config file was updated to support the new theme.`
 
 ### Version 1.0.0:
 
@@ -92,6 +99,7 @@ Changelog
 
 #### Upgrade Notice
 
-Note that, due to the vast amount of modifications, compatibility with older versions isn't guaranteed. Please backup & test on a dev instance first.
+Note that, due to the vast amount of modifications, compatibility with older projects isn't guaranteed. Please backup & test on a dev instance first.
 
-Copy your application/config/stikked.php - stiqued.php config file away. Upload the new version. Compare the differences between stikked.php - stiqued.php and the new snip.php, and make the necessary adjustments.
+Copy your `application/config/snip.php` / `stikked.php` / `stiqued.php` config file away. Upload the new version.
+If you're upgrading from another project, compare the differences between `stikked.php` / `stiqued.php` and the new `snip.php`, and make the necessary adjustments.

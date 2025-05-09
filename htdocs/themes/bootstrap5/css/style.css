@@ -12,14 +12,14 @@
 /* Footer
 -------------------------------------------------- */
 .footer {
-  margin-top: 35px;
-  padding: 15px 0 10px;
-  border-top: 1px solid #e5e5e5;
+	margin-top: 35px;
+	padding: 15px 0 10px;
+	border-top: 1px solid #e5e5e5;
 }
 
 .footer p {
-  margin-bottom: 0;
-  color: #555;
+	margin-bottom: 0;
+	color: #555;
 }
 
 section {
@@ -107,34 +107,35 @@ table.table thead .sorting_desc_disabled { background: url('../images/sort_desc_
 
 /* Search */
 .page-header {
-    position: relative;
+	position: relative;
 }
 
 /* line nums > 1000 are hidden */
 
 .CodeMirror ol {
-    margin-left: 40px;
+	margin-left: 50px;
+	padding-left: 0.5rem;
 }
 
 .text {
-    word-wrap: break-word;
+	word-wrap: break-word;
 }
 
 a {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+	text-decoration: underline;
 }
 
 .ui-selectable>.ui-selected { background-color: #a6c9e2; }
 .ui-selectable>.ui-selecting { background: #FECA40; }
 
 .ui-selectable-helper {
-    position: absolute;
-    z-index: 100;
-    border:1px dotted black;
+	position: absolute;
+	z-index: 100;
+	border:1px dotted black;
 }
 
 #embed_field {
@@ -145,100 +146,122 @@ a:hover {
 	float: right;
 }
 
+.pages {
+	display: flex;
+	gap: 3px;
+}
+
 /* Light mode Paste Form background */
 .paste-form-bg {
-  background-color: #f9f9f9; 
+	background-color: #f9f9f9; 
 }
 
 /* Dark theme styles */
 .dark-theme {
-    background-color: #121212;
-    color: #ffffff;
+	background-color: #121212;
+	color: #ffffff;
 }
 
 /* Paste Form background */
 .dark-theme .paste-form-bg {
-  background-color: #2c3034; 
-  color: #ffffff;
+	background-color: #2c3034; 
+	color: #ffffff;
 }
 
 /* Muted text */
 .dark-theme .text-muted {
-  color: #7b7b7b !important;
+	color: #7b7b7b !important;
 }
 
 /* Forms */
 .dark-theme .form-control, 
 .dark-theme .form-group {
-    background-color: #1e1e1e;
-    color: #fff;
-    border: 1px solid #555;
+	background-color: #1e1e1e;
+	color: #fff;
+	border: 1px solid #555;
 }
 
 /* Placeholder color in dark mode */
 .dark-theme .form-control::placeholder {
-    color: #bbb;
+	color: #bbb;
 }
 
 /* Buttons styling */
 .dark-theme .btn {
-    border-color: #666;
+	border-color: #666;
 }
 
 /* Dropdowns */
 .dark-theme .form-select {
-    background-color: #1e1e1e;
-    color: #fff;
-    border: 1px solid #555;
+	background-color: #1e1e1e;
+	color: #fff;
+	border: 1px solid #555;
 }
 
 /* Navbar styling */
 .custom-navbar {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, border-bottom 0.3s ease, box-shadow 0.3s ease;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	transition: background-color 0.3s ease, border-bottom 0.3s ease, box-shadow 0.3s ease;
 }
 
 .dark-theme .custom-navbar {
-    background-color: #343a40;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+	background-color: #343a40;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .nav-link, .navbar-brand {
-    text-decoration: none !important;
-}
-
-/* CodeMirror */
-.dark-theme .CodeMirror {
-  color: #212529;
+	text-decoration: none !important;
 }
 
 /* Alert Banner */
 :root {
-  --alert-bg-start: #e3f2fd;
-  --alert-bg-end: #bbdefb;
-  --alert-text: #0d47a1;
+	--alert-bg-start: #e3f2fd;
+	--alert-bg-end: #bbdefb;
+	--alert-text: #0d47a1;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --alert-bg-start: #3f4c6b;
-    --alert-bg-end: #606c88;
-    --alert-text: #ecf0f1;
-  }
+	:root {
+		--alert-bg-start: #3f4c6b;
+		--alert-bg-end: #606c88;
+		--alert-text: #ecf0f1;
+	}
 }
 
 .alert-banner {
-  padding: 1rem 1.5rem;
-  margin-bottom: -30px;
-  border: none;
-  border-radius: 0.25rem;
-  background: linear-gradient(90deg, var(--alert-bg-start), var(--alert-bg-end));
-  color: var(--alert-text);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+	padding: 1rem 1.5rem;
+	margin-bottom: -30px;
+	border: none;
+	border-radius: 0.25rem;
+	background: linear-gradient(90deg, var(--alert-bg-start), var(--alert-bg-end));
+	color: var(--alert-text);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .alert-banner h5 {
-  margin: 0;
-  font-size: 15px;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+	margin: 0;
+	font-size: 15px;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* ACE Editor Color Scheme */
+.ace-clouds {
+	border: 1px solid #CDCDCD !important;
+	border-radius: 3px;
+}
+
+.dark-theme .ace-clouds {
+	background-color: #2c3034 !important;
+	color: #ebf3f6 !important;
+	border: 1px solid #555 !important;
+	border-radius: 3px;
+}
+
+.dark-theme .ace-clouds .ace_gutter {
+	background: #1e1e1e !important;
+	color: #ebf3f6 !important;
+}
+
+.dark-theme .ace-clouds .ace_marker-layer .ace_active-line {
+	background: #113a1b;
 }

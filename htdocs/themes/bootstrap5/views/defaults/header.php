@@ -34,11 +34,12 @@ $this->carabiner->config(array(
 ));
 
 $this->carabiner->css('bootstrap.min.css');
-$this->carabiner->css('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css');
 $this->carabiner->css('style.css');
 $this->carabiner->css('codemirror.css');
 
 $this->carabiner->display('css'); 
+
+echo '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">';
 
 $searchparams = ($this->input->get('search') ? '?search=' . $this->input->get('search') : '');
 ?>
@@ -94,14 +95,14 @@ $searchparams = ($this->input->get('search') ? '?search=' . $this->input->get('s
 
 		<?php if ($this->config->item('alert_banner')) { ?>
 			<!-- Alert Banner -->
-			<div class="container mt-5 pt-4">
+			<div class="container mt-5 mt-md-4 pt-4">
 				<div class="alert alert-banner" role="alert">
 					<h5><?php echo lang('alert_banner'); ?></h5>
 				</div>
 			</div>
 		<?php } ?>
 
-		<div class="container mt-5 pt-4">
+		<div class="container mt-5 mt-md-4 pt-4">
 			<?php if(isset($status_message)) { ?>
 				<div class="alert alert-success" role="alert">
 					<?php echo $status_message; ?>

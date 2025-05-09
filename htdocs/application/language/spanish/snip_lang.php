@@ -73,3 +73,4 @@ $lang['table_hits'] = 'Visto';
 $lang['table_time'] = 'cuando';
 $lang['powered_by'] = 'Gracias a la tecnología de';
 $lang['alert_banner'] = 'ℹ️ Tus datos están seguros aquí... A no ser que enfades a los dioses SNIP. Y digamos que tienen realmente muy mal sentido del humor.';
+$lang['color_mode'] = 'Modo Oscuro';

@@ -23,7 +23,7 @@ $config['proj_url'] = 'https://github.com/MercanoGlobal/SNIP';
 | The project version.
 |
 */
-$config['proj_version'] = '1.0.0';
+$config['proj_version'] = '1.1.0';
 
 
 /**
